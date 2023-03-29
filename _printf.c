@@ -9,6 +9,7 @@ void print_buffer(char buffer[], int *buff_ind);
  */
 int _printf(const char *format, ...)
 {
+	int  n = 0;
 	int i, printed = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
 	va_list list;
@@ -35,7 +36,7 @@ int _printf(const char *format, ...)
 			flags = get_flags(format, &i);
 			width = get_width(format, &i, list);
 			precision = get_precision(format, &i, list);
-			size = get_size(format, &i);
+			size =(size_t) n + 1;      /* One extra byte for '\0' */;
 			++i;
 			printed = handle_print(format, &i, list, buffer,
 				flags, width, precision, size);
